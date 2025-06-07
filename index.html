@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zeynep | AR Developer & Computer Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #0e0e0e;
+      color: #fff;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    nav .links a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav .links a:hover { color: #00aaff; }
+    nav .lang-toggle {
+      cursor: pointer;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    section {
+      padding: 6rem 2rem 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero {
+      background: linear-gradient(120deg, #111 0%, #222 100%);
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .hero p { font-size: 1.2rem; color: #ccc; }
+
+    .projects {
+        background-color: #191919;
+    }
+    .projects h2 { 
+        margin-bottom: 2rem; 
+        font-size: 2.8rem;
+        color: #fff;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        max-width: 1000px;
+    }
+    .card {
+        background-color: #222;
+        border-radius: 16px;
+        padding: 1.1rem 1.1rem 1.5rem;
+        width: 320px;
+        transition: transform 0.3s, box-shadow 0.2s;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .card:hover { 
+        transform: scale(1.045) translateY(-2px);
+        box-shadow: 0 8px 30px #00aaff33;
+    }
+    .card h3 {
+        margin-bottom: 1.2rem;
+        font-size: 1.33rem;
+        color: #fff;
+        font-weight: 700;
+        align-self: center;
+    }
+    .project-badges {
+        margin-bottom: 0.7rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55em;
+        align-self: center;
+    }
+    .badge {
+        background: linear-gradient(90deg, #222 70%, #00aaff1a 100%);
+        color: #00aaff;
+        font-size: 0.92em;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.28em 0.95em;
+        letter-spacing: 0.01em;
+        display: inline-block;
+        margin-right: 0.04em;
+        margin-bottom: 0.5em;
+        border: 1.2px solid #00aaff44;
+        transition: background 0.2s, color 0.2s;
+    }
+    .badge:hover {
+        background: #00aaff;
+        color: #fff;
+    }
+    .project-desc {
+        color: #bbb;
+        font-size: 1.08rem;
+        margin-bottom: 1.1rem;
+        margin-top: 1.1rem;
+        min-height: 45px;
+        text-align: center;
+    }
+    .project-links {
+        margin: auto;
+        display: flex;
+        align-items: center;
+        gap: 1.2em;
+    }
+    .project-links a {
+        color: #fff;
+        background: #232323;
+        border-radius: 50%;
+        width: 2.3em;
+        height: 2.3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3em;
+        box-shadow: 0 1px 5px #00aaff24;
+        transition: background 0.18s, color 0.18s, transform 0.16s;
+    }
+    .project-links a:hover {
+        background: #00aaff;
+        color: #fff;
+        transform: scale(1.12);
+    }
+    @media (max-width: 800px) {
+        .card-container { flex-direction: column; gap: 2.5rem; align-items: center;}
+        .card { width: 97vw; max-width: 400px; }
+    }
+    .card p { font-size: 1rem; color: #bbb; }
+
+    .skills {
+      background-color: #111;
+      color: #fff;
+      padding-bottom: 4.5rem;
+    }
+    .skills h2 {
+      margin-bottom: 2.2rem;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #fff;
+      text-align: center;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.1rem 2.7rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+      width: 100%;
+    }
+    .skill-chip {
+      background: linear-gradient(100deg, #1a1a1a 60%, #222 100%);
+      color: #fff;
+      border-radius: 30px;
+      padding: 0.7em 1.7em 0.7em 1.1em;
+      font-size: 1.08rem;
+      font-weight: 600;
+      box-shadow: 0 2px 10px #00aaff12;
+      border: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      transition: box-shadow 0.2s, border 0.2s, transform 0.18s;
+      cursor: default;
+      position: relative;
+    }
+    .skill-chip:hover {
+      box-shadow: 0 4px 20px #00aaff33;
+      border: 2px solid #00aaff;
+      transform: translateY(-2px) scale(1.04);
+    }
+    .chip-icon {
+      font-size: 1.17em;
+      margin-right: 0.15em;
+      opacity: 0.92;
+    }
+    .skills-subtitle {
+      color: #00aaff;
+      font-size: 1em;
+      margin-bottom: 1.2em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-align: center;
+      width: 100%;
+    }
+
+    .skills-2col {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.3em 4em;
+      margin-top: 2.3em;
+    }
+    .skills-block {
+      min-width: 210px;
+      max-width: 320px;
+      background: #181818;
+      border-radius: 16px;
+      padding: 1.3em 1.8em;
+      box-shadow: 0 1px 8px #00aaff10;
+      margin: 0.8em 0.45em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .skills-block-title {
+      color: #00aaff;
+      font-size: 1.04em;
+      font-weight: 700;
+      margin-bottom: 1.3em;
+      letter-spacing: 0.03em;
+    }
+    .skills-block-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em 1em;
+      justify-content: center;
+    }
+    .skills-block-chip {
+      background: #232323;
+      color: #fff;
+      border-radius: 17px;
+      padding: 0.32em 0.9em;
+      margin-bottom: 0.2em;
+      font-size: 0.99em;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #00aaff10;
+      border: 1.5px solid #151a1f;
+      transition: border 0.18s, background 0.18s;
+    }
+    .skills-block-chip:hover {
+      border: 1.5px solid #00aaff;
+      background: #141d27;
+      color: #00aaff;
+    }
+
+    @media (max-width: 900px) {
+      .skills-list { gap: 1.2rem 1.2rem; }
+      .skills-2col { gap: 1.2em 1.2em; }
+      .skills-block { min-width: 160px; }
+    }
+    @media (max-width: 700px) {
+      .skills-list { flex-direction: column; gap: 0.7rem; align-items: center;}
+      .skills-2col { flex-direction: column; gap: 1.1em 0; align-items: center;}
+      .skills-block { width: 98%; min-width: unset; max-width: 99vw;}
+    }
+
+    .contact { background-color: #000; }
+    .contact h2 { 
+        margin-bottom: 2rem;
+        font-size: 2.8rem;
+    }
+    .contact hr { 
+        width: 28%;
+        border-color: #000;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: row;
+      gap: 2.2rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.12rem;
+      transition: color 0.2s;
+      opacity: 0.92;
+      min-width: 85px;
+    }
+    .contact-link:hover {
+      color: #00aaff;
+      opacity: 1;
+    }
+    .contact-link svg {
+      width: 2.2em;
+      height: 2.2em;
+      fill: #fff;
+      margin-bottom: 0.25em;
+      transition: fill 0.2s;
+    }
+    .contact-link:hover svg { fill: #00aaff; }
+
+    .contact-label {
+      font-size: 0.96em;
+      color: #bbb;
+      margin-top: 0.15em;
+      letter-spacing: 0.01em;
+      text-align: center;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #000;
+      color: #888;
+    }
+
+    @media (max-width: 700px) {
+      .contact-links { flex-direction: column; gap: 1.2rem; }
+      .contact-link { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="links">
+    <a href="#home" data-en="Home" data-tr="Anasayfa">Home</a>
+    <a href="#projects" data-en="Projects" data-tr="Projeler">Projects</a>
+    <a href="#skills" data-en="Skills" data-tr="Yetenekler">Skills</a>
+    <a href="#contact" data-en="Contact" data-tr="İletişim">Contact</a>
+  </div>
+  <div class="lang-toggle" onclick="toggleLang()">TR</div>
+</nav>
+
+<section class="hero" id="home">
+  <h1 data-en="Hi, I'm Zeynep." data-tr="Merhaba, ben Zeynep.">Hi, I'm Zeynep.</h1>
+  <p data-en="AR/VR Developer | Full-Stack Developer | Computer Engineer"
+     data-tr="AR/VR Geliştirici | Full-Stack Geliştirici | Bilgisayar Mühendisi">
+    AR/VR Developer | Full-Stack Developer | Computer Engineer
+  </p>
+</section>
+
+<section class="projects" id="projects">
+  <h2 data-en="Projects" data-tr="Projeler">Projects</h2>
+  <div class="card-container">
+    <div class="card">
+      <h3 data-en="Multiplayer AR Duel" data-tr="Çok Oyunculu AR Düello">Multiplayer AR Duel</h3>
+      <div class="project-badges">
+        <span class="badge">Unity</span>
+        <span class="badge">AR</span>
+        <span class="badge">C#</span>
+      </div>
+      <p class="project-desc" data-en="An Augmented Reality app aiming to deliver a cross-platform AR experience using Unity, AR Foundation, and more"
+         data-tr="Unity, AR Foundation ve daha fazlasını kullanarak platformlar arası AR deneyimi sunmayı amaçlayan bir Artırılmış Gerçeklik uygulaması">
+        An Augmented Reality app aiming to deliver a cross-platform AR experience using Unity, AR Foundation, and more.
+      </p>
+      <div class="project-links">
+        <a href="https://github.com/koixos/group6-ar-module" target="_blank" title="GitHub Repo">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.01-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.29-1.72-1.29-1.72-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.72 0-1.26.45-2.29 1.2-3.09-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.18a10.97 10.97 0 0 1 2.9-.39c.99.01 1.99.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.6.23 2.78.12 3.07.75.8 1.2 1.83 1.2 3.09 0 4.45-2.69 5.43-5.24 5.72.41.35.78 1.03.78 2.08 0 1.5-.01 2.71-.01 3.08 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <h3 data-en="Side Seat" data-tr="Yan Koltuk">Side Seat</h3>
+      <div class="project-badges">
+        <span class="badge">React</span>
+        <span class="badge">Flutter</span>
+        <span class="badge">ASP.NET</span>
+        <span class="badge">MSSQL</span>
+      </div>
+      <p class="project-desc" data-en="A web and mobile application developed to facilitate student tracking in school buses"
+         data-tr="Okul otobüslerinde öğrenci takibini kolaylaştırmak için geliştirilmiş bir web ve mobil uygulamadır">
+        A web and mobile application developed to facilitate student tracking in school buses.
+      </p>
+      <div class="project-links">
+        <a href="https://github.com/koixos/yankoltuk" target="_blank" title="GitHub Repo">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.01-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.29-1.72-1.29-1.72-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.72 0-1.26.45-2.29 1.2-3.09-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.18a10.97 10.97 0 0 1 2.9-.39c.99.01 1.99.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.6.23 2.78.12 3.07.75.8 1.2 1.83 1.2 3.09 0 4.45-2.69 5.43-5.24 5.72.41.35.78 1.03.78 2.08 0 1.5-.01 2.71-.01 3.08 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <h2 data-en="Skills" data-tr="Yetenekler">Skills</h2>
+  <div class="skills-2col">
+    <div class="skills-block">
+      <div class="skills-block-title" data-en="Programming Languages" data-tr="Programlama Dilleri">Programming Languages</div>
+      <div class="skills-block-list">
+        <span class="skills-block-chip">C</span>
+        <span class="skills-block-chip">C++</span>
+        <span class="skills-block-chip">C#</span>
+        <span class="skills-block-chip">Java</span>
+        <span class="skills-block-chip">JavaScript</span>
+        <span class="skills-block-chip">Python</span>
+        <span class="skills-block-chip">Assembly</span>
+      </div>
+    </div>
+    <div class="skills-block">
+      <div class="skills-block-title" data-en="Frameworks & Tools" data-tr="Frameworkler & Araçlar">Frameworks & Tools</div>
+      <div class="skills-block-list">
+        <span class="skills-block-chip">React</span>
+        <span class="skills-block-chip">.NET Core</span>
+        <span class="skills-block-chip">Unity (AR/VR)</span>
+        <span class="skills-block-chip">WebSocket</span>
+        <span class="skills-block-chip">MSSQL</span>
+        <span class="skills-block-chip">CMake</span>
+      </div>
+    </div>
+    <div class="skills-block">
+      <div class="skills-block-title" data-en="Focus Areas" data-tr="Odak Alanları">Focus Areas</div>
+      <div class="skills-block-list">
+        <span class="skills-block-chip">Augmented Reality</span>
+        <span class="skills-block-chip">Virtual Reality</span>
+        <span class="skills-block-chip">Full-Stack Dev</span>
+        <span class="skills-block-chip">Embedded Systems</span>
+        <span class="skills-block-chip">Computer Vision</span>
+        <!--<span class="skills-block-chip">AI Fashion Tech</span>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 data-en="Contact Me" data-tr="İletişime Geç">Contact Me</h2>
+  <hr>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:koioszey@gmail.com" target="_blank" title="Email">
+      <svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm19.5.5L12 13.36 2.5 4.5V20a.5.5 0 0 0 .5.5h18a.5.5 0 0 0 .5-.5V4.5zm-1.91-1.09L12 11.13 4.41 3.41A.5.5 0 0 1 4.5 3h15a.5.5 0 0 1 .09.41z"/></svg>
+    </a>
+    <a class="contact-link" href="https://github.com/koixos" target="_blank" title="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.01-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.29-1.72-1.29-1.72-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.72 0-1.26.45-2.29 1.2-3.09-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.18a10.97 10.97 0 0 1 2.9-.39c.99.01 1.99.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.6.23 2.78.12 3.07.75.8 1.2 1.83 1.2 3.09 0 4.45-2.69 5.43-5.24 5.72.41.35.78 1.03.78 2.08 0 1.5-.01 2.71-.01 3.08 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+    </a>
+    <a class="contact-link" href="https://linkedin.com/in/sumeyyezeynepgurbuz" target="_blank" title="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-12.75 19h-2.5v-9.5h2.5v9.5zm-1.25-10.75c-.83 0-1.5-.67-1.5-1.5 0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5c0 .83-.67 1.5-1.5 1.5zm16 10.75h-2.5v-5c0-1.19-.02-2.71-1.65-2.71-1.66 0-1.91 1.3-1.91 2.63v5.08h-2.5v-9.5h2.4v1.3h.03c.33-.63 1.13-1.3 2.33-1.3 2.49 0 2.95 1.64 2.95 3.76v5.74z"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Zeynep | Built with passion</p>
+</footer>
+
+<script>
+  let isTR = false;
+  function toggleLang() {
+    isTR = !isTR;
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = isTR ? el.getAttribute('data-tr') : el.getAttribute('data-en');
+    });
+    document.querySelector('.lang-toggle').textContent = isTR ? 'EN' : 'TR';
+  }
+</script>
+
+</body>
+</html>
